@@ -13,9 +13,9 @@
         <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 
-        <property name="connection.url">jdbc:postgresql://localhost:5432/HotelManagementSystem_db</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/hotelManagementSystem</property>
 
-        <property name="connection.username">dev_user</property>
+        <property name="connection.username">techpro</property>
 
         <property name="connection.password">password</property>
 
@@ -41,7 +41,7 @@
 
         <!-- Mapping entity classes -->
         <mapping class="com.tpe.hotelManagementSystem.domain.Hotel"/>
-        <mapping class="com.tpe.hotelManagementSystem.domain.Room"/>
+        <mapping package="com.tpe.domain"/> <!--Package'taki class'lasrımızı annota eder. (işaretler)-->
         <!-- addAnnotatedClass(Hotel.class).addAnnotatedClass(Room.class); xml dosyamızda yaptık yapmamıza gerek yok. -->
 
     </session-factory>

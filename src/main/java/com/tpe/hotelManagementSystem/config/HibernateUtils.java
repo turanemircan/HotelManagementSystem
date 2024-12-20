@@ -12,10 +12,13 @@ public class HibernateUtils {
         try {
             Configuration configuration = new Configuration().
                     configure("hibernate.cfg.xml");
-            // addAnnotatedClass(Hotel.class).addAnnotatedClass(Room.class); xml dosyamızda yaptık yapmamıza gerek yok.
+            // addAnnotatedClass(Hotel.class).
+            // addAnnotatedClass(Room.class).
+            // addAnnotatedClass(Reservation.class).
+            // addAnnotatedClass(Guest.class); xml dosyamızda yaptık yapmamıza gerek yok.
             sessionFactory = configuration.buildSessionFactory();
         } catch (Throwable ex) {
-            System.err.println("Initial SessionFactory is failed. " + ex);
+            System.err.println("Initialization of session factory is FAILED!! " + ex);
             throw new ExceptionInInitializerError(ex); // Javanın kendi exception'ı yazmasakta olurdu.
         }
     }

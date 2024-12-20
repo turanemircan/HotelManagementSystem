@@ -1,4 +1,4 @@
-package com.tpe.hotelManagementSystem.excepton;
+package com.tpe.hotelManagementSystem.exceptons;
 
 public class RoomResourceNotFoundException extends RuntimeException {
     public RoomResourceNotFoundException(String message) {
