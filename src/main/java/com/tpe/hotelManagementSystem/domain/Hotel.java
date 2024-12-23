@@ -4,10 +4,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// Bu class'ta hotel tablosunu oluşturulacak
 @Entity
 @Table(name = "t_hotel")
 public class Hotel {
+
     @Id
     private Long id;
 
@@ -17,17 +17,20 @@ public class Hotel {
     @Column(nullable = false)
     private String location;
 
-    @OneToMany(mappedBy = "hotel")
+    //A oteli odaları:11,12,13
+    //oda listesinden 11 i çıkarsam:12,13-->room tablosunda kalmaya devam etsin
+
+    /// orphanremoval:11 i tablodan da silerdi
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)//ilişki diğer tarafta sağlanacak
     private List<Room> rooms = new ArrayList<>();
 
     public Hotel() {
     }
 
-    public Hotel(Long id, String name, String location, List<Room> rooms) {
+    public Hotel(Long id, String name, String location) {
         this.id = id;
         this.name = name;
         this.location = location;
-        this.rooms = rooms;
     }
 
     public Long getId() {

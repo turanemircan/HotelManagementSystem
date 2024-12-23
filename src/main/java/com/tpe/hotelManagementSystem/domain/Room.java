@@ -1,10 +1,13 @@
 package com.tpe.hotelManagementSystem.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "t_rooms")
+@Table(name = "t_room")
 public class Room {
+
     @Id
     private Long id;
 
@@ -12,16 +15,22 @@ public class Room {
     private String number;
 
     @Column(nullable = false)
-    private int capacity;
+    private Integer capacity;
 
     @ManyToOne
-    @JoinColumn(name = "hotel_id", nullable = false)
-    private Hotel hotel;
+    @JoinColumn(nullable = false)
+    private Hotel hotel;//bu oda hangi otelin:ID
+
+    //oda rez list:1,2,3
+    //rez. list 1 id li olanı çıkardım:tablodan silelim
+
+    @OneToMany(mappedBy = "room", orphanRemoval = true)
+    private List<Reservation> reservations = new ArrayList<>();
 
     public Room() {
     }
 
-    public Room(Long id, String number, int capacity, Hotel hotel) {
+    public Room(Long id, String number, Integer capacity, Hotel hotel) {
         this.id = id;
         this.number = number;
         this.capacity = capacity;
@@ -44,11 +53,11 @@ public class Room {
         this.number = number;
     }
 
-    public int getCapacity() {
+    public Integer getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(Integer capacity) {
         this.capacity = capacity;
     }
 
@@ -60,13 +69,20 @@ public class Room {
         this.hotel = hotel;
     }
 
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
     @Override
     public String toString() {
         return "Room{" +
                 "id=" + id +
                 ", number='" + number + '\'' +
                 ", capacity=" + capacity +
-                // ", hotel=" + hotel + // StackOverflowError hatası alırız...
                 '}';
     }
 }
